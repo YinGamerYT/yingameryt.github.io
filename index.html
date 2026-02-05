@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tonixker</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://i.ibb.co/sYxYRmT/ca.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body{
+      margin:0;
+      overflow:hidden;
+      font-family:'Poppins',system-ui,sans-serif;
+      background:black;
+      color:white;
+    }
+
+    video{
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      z-index:-1;
+      filter:brightness(0.6) grayscale(100%) blur(1px);
+    }
+
+    .glass{
+      background: rgba(0,0,0,0.3);
+      backdrop-filter:blur(18px);
+      border-radius:32px;
+      border:1px solid #ffffff55;
+      box-shadow:
+        0 0 15px #ffffff,
+        0 0 40px #ffffff33,
+        inset 0 0 15px #ffffff22;
+      animation:float 5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
+    }
+
+    .neon-text{
+      color:white;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 15px #fff,
+        0 0 30px #aaa;
+    }
+
+    .icon{
+      transition:0.3s;
+      text-shadow:0 0 12px currentColor;
+      color:white;
+    }
+
+    .icon:hover{
+      transform:scale(1.25);
+      filter:drop-shadow(0 0 18px #fff);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Video fondo aesthetic coches -->
+<video autoplay muted loop>
+  <source src="https://cdn.pixabay.com/video/2016/07/03/3698-173505132_large.mp4" type="video/mp4">
+</video>
+
+<div class="w-full h-screen flex items-center justify-center">
+
+  <div class="glass p-10 text-center max-w-md w-full">
+
+    <!-- Nombre -->
+    <h1 class="text-4xl font-bold tracking-widest mb-2 neon-text">
+       Tonixker 
+    </h1>
+
+    <!-- Bio -->
+    <p class="text-gray-300 mb-3 text-sm"></p>
+
+    <!-- Ubicación -->
+    <p class="text-xs text-gray-400 mb-4 flex justify-center items-center gap-1">
+      <i class="fas fa-location-dot"></i> New York
+    </p>
+
+    <!-- Avatar -->
+    <div class="flex justify-center mb-6">
+      <img
+        src="https://i.ibb.co/r2GGdWGj/8cc9b9562abf608ccbbd36ac576cd945.jpg"
+        class="w-32 h-32 rounded-full border border-white shadow-[0_0_25px_white] object-cover"
+      >
+    </div>
+
+    <!-- Usuario -->
+    <p class="font-semibold neon-text text-xl">Tonixker</p>
+    <p class="text-xs text-gray-400 mb-6">active now</p>
+
+    <!-- Redes -->
+    <div class="flex justify-center gap-10 text-3xl mt-5">
+      <a href="https://discord.gg/Ce2tjuJbHw" target="_blank" class="icon">
+        <i class="fab fa-discord"></i>
+      </a>
+      <a href="https://t.me/tonixasd" target="_blank" class="icon">
+        <i class="fab fa-telegram"></i>
+      </a>
+      <a href="https://www.youtube.com/@SoyWerx" target="_blank" class="icon">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+
+    <!-- Views -->
+    <p class="text-xs text-gray-500 mt-8">
+      👁 Visitas: <span id="visits">0</span>
+    </p>
+
+  </div>
+</div>
+
+<!-- Contador de visitas usando Countify -->
+<script>
+  // URL del contador
+  const countUrl = 'https://api.countify.xyz/increment/tonixker';
+
+  fetch(countUrl)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('visits').innerText = data.value;
+    })
+    .catch(err => {
+      console.error('Error al obtener visitas:', err);
+      document.getElementById('visits').innerText = '---';
+    });
+</script>
+
+</body>
+</html>
