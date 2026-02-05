@@ -1,86 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Tonixker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tonixker</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://i.ibb.co/sYxYRmT/ca.png">
+<link rel="icon" href="https://i.ibb.co/sYxYRmT/ca.png">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
+<style>
 
-    *{
-      box-sizing:border-box;
-    }
+*{box-sizing:border-box}
 
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,sans-serif;
-      background:black;
-      color:white;
-      min-height:100svh;
-      overflow-x:hidden;
-    }
+body{
+  margin:0;
+  font-family:Poppins,system-ui;
+  background:black;
+  color:white;
+  min-height:100svh;
+  overflow:hidden;
+}
 
-    /* Fondo con imagen */
-    .bg-image{
-      position:fixed;
-      inset:0;
-      width:100%;
-      height:100svh;
-      background-image:url("https://i.ibb.co/qMK8qnzX/midnight-moon-macbook-pro-aesthetic-gkp1cta6py3ggmf0.jpg");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      filter: brightness(0.6) grayscale(100%) blur(6px);
-      z-index:-1;
-    }
+/* Fondo */
+.bg-image{
+  position:fixed;
+  inset:0;
+  background:url("https://i.ibb.co/qMK8qnzX/midnight-moon-macbook-pro-aesthetic-gkp1cta6py3ggmf0.jpg") center/cover no-repeat;
+  filter:brightness(.6) grayscale(1) blur(6px);
+  z-index:-3;
+}
 
-    /* Glass */
-    .glass{
-      background: rgba(0,0,0,0.35);
-      backdrop-filter:blur(18px);
-      border-radius:24px;
-      border:1px solid #ffffff55;
-      box-shadow:
-        0 0 15px #ffffff,
-        0 0 40px #ffffff33,
-        inset 0 0 15px #ffffff22;
-      animation:float 5s ease-in-out infinite;
-    }
+/* Partículas */
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+}
 
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
+/* Glass */
+.glass{
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(18px);
+  border-radius:24px;
+  border:1px solid #fff4;
+  box-shadow:0 0 20px #fff2;
+  animation:float 6s ease-in-out infinite;
+}
 
-    .neon-text{
-      color:white;
-      text-shadow:
-        0 0 5px #fff,
-        0 0 15px #fff,
-        0 0 30px #aaa;
-    }
+@keyframes float{
+  50%{transform:translateY(-6px)}
+}
 
-    .icon{
-      transition:0.3s;
-      text-shadow:0 0 12px currentColor;
-      color:white;
-    }
+.icon{
+  color:white;
+  transition:.3s;
+}
 
-    .icon:hover{
-      transform:scale(1.2);
-      filter:drop-shadow(0 0 18px #fff);
-    }
+.icon:hover{
+  transform:scale(1.2);
+  filter:drop-shadow(0 0 15px white);
+}
 
-  </style>
+/* Texto fijo (para que no salte) */
+#typing{
+  min-height:16px;
+  display:block;
+}
+
+</style>
 </head>
 
 <body>
@@ -88,64 +78,116 @@
 <!-- Fondo -->
 <div class="bg-image"></div>
 
-<!-- Contenido -->
-<div class="w-full min-h-screen flex items-center justify-center px-4 py-6">
+<!-- Partículas -->
+<canvas id="particles"></canvas>
 
-  <div class="glass w-full max-w-sm sm:max-w-md p-6 sm:p-10 text-center">
+<!-- Card -->
+<div class="w-full min-h-screen flex items-center justify-center px-4">
 
-    <!-- Nombre -->
-    <h1 class="text-2xl sm:text-4xl font-bold tracking-widest mb-2 neon-text">
-      Tonixker
-    </h1>
+<div class="glass max-w-md w-full p-6 sm:p-10 text-center">
 
-    <!-- Ubicación -->
-    <p class="text-[11px] sm:text-xs text-gray-400 mb-3 flex justify-center items-center gap-1">
-      <i class="fas fa-location-dot"></i> New York
-    </p>
+<h1 class="text-3xl font-bold mb-2">Tonixker</h1>
 
-    <!-- Avatar -->
-    <div class="flex justify-center mb-4 sm:mb-6">
-      <img
-        src="https://i.ibb.co/r2GGdWGj/8cc9b9562abf608ccbbd36ac576cd945.jpg"
-        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border border-white shadow-[0_0_20px_white] object-cover"
-        alt="Avatar"
-      >
-    </div>
+<p id="typing" class="text-xs text-gray-400 mb-3"></p>
 
-    <!-- Usuario -->
-    <p class="font-semibold neon-text text-lg sm:text-xl">
-      Tonixker
-    </p>
+<img src="https://i.ibb.co/r2GGdWGj/8cc9b9562abf608ccbbd36ac576cd945.jpg"
+class="w-28 h-28 mx-auto rounded-full border border-white mb-4">
 
-    <p class="text-[11px] sm:text-xs text-gray-400 mb-4 sm:mb-6">
-      active now
-    </p>
+<p class="font-semibold mb-1">Tonixker</p>
+<p class="text-xs text-gray-400 mb-4">active now</p>
 
-    <!-- Redes -->
-    <div class="flex justify-center gap-8 sm:gap-10 text-2xl sm:text-3xl mt-3">
+<div class="flex justify-center gap-8 text-2xl">
 
-      <a href="https://discord.gg/Ce2tjuJbHw" target="_blank" class="icon">
-        <i class="fab fa-discord"></i>
-      </a>
-
-      <a href="https://t.me/tonixasd" target="_blank" class="icon">
-        <i class="fab fa-telegram"></i>
-      </a>
-
-      <a href="https://www.youtube.com/@SoyWerx" target="_blank" class="icon">
-        <i class="fab fa-youtube"></i>
-      </a>
-
-    </div>
-
-    <!-- Footer -->
-    <p class="text-[9px] sm:text-[10px] text-gray-500 mt-5">
-      © Tonixker
-    </p>
-
-  </div>
+<a href="https://discord.gg/Ce2tjuJbHw" class="icon"><i class="fab fa-discord"></i></a>
+<a href="https://t.me/tonixasd" class="icon"><i class="fab fa-telegram"></i></a>
+<a href="https://www.youtube.com/@SoyWerx" class="icon"><i class="fab fa-youtube"></i></a>
 
 </div>
+
+<p class="text-[10px] text-gray-500 mt-5">© Tonixker</p>
+
+</div>
+</div>
+
+<!-- Typing -->
+<script>
+
+const texts=[
+  "Cracker",
+  "Designer",
+  "Gamer",
+  "Creator"
+];
+
+let i=0,j=0,del=false;
+const el=document.getElementById("typing");
+
+function type(){
+
+  let t=texts[i];
+
+  if(!del){
+    el.textContent=t.slice(0,++j);
+    if(j===t.length) setTimeout(()=>del=true,1200);
+  }else{
+    el.textContent=t.slice(0,--j);
+    if(j===0){
+      del=false;
+      i=(i+1)%texts.length;
+    }
+  }
+
+  setTimeout(type,80);
+}
+
+type();
+
+</script>
+
+<!-- Partículas -->
+<script>
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const dots=[];
+
+for(let i=0;i<80;i++){
+  dots.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+1,
+    v:Math.random()+.3
+  });
+}
+
+function draw(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  dots.forEach(d=>{
+    d.y-=d.v;
+    if(d.y<0)d.y=canvas.height;
+
+    ctx.fillStyle="rgba(255,255,255,.5)";
+    ctx.beginPath();
+    ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
 
 </body>
 </html>
