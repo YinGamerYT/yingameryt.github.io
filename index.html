@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Tonixker</title>
 
   <!-- Tailwind -->
@@ -15,27 +15,39 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
-      overflow:hidden;
       font-family:'Poppins',system-ui,sans-serif;
       background:black;
       color:white;
+      min-height:100svh;
+      overflow-x:hidden;
     }
 
-    video{
+    /* Fondo con imagen */
+    .bg-image{
       position:fixed;
-      top:0;left:0;
-      width:100%;height:100%;
-      object-fit:cover;
+      inset:0;
+      width:100%;
+      height:100svh;
+      background-image:url("https://i.ibb.co/qMK8qnzX/midnight-moon-macbook-pro-aesthetic-gkp1cta6py3ggmf0.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      filter: brightness(0.6) grayscale(100%) blur(6px);
       z-index:-1;
-      filter:brightness(0.6) grayscale(100%) blur(1px);
     }
 
+    /* Glass */
     .glass{
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.35);
       backdrop-filter:blur(18px);
-      border-radius:32px;
+      border-radius:24px;
       border:1px solid #ffffff55;
       box-shadow:
         0 0 15px #ffffff,
@@ -46,7 +58,7 @@
 
     @keyframes float{
       0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-12px)}
+      50%{transform:translateY(-8px)}
     }
 
     .neon-text{
@@ -64,61 +76,75 @@
     }
 
     .icon:hover{
-      transform:scale(1.25);
+      transform:scale(1.2);
       filter:drop-shadow(0 0 18px #fff);
     }
+
   </style>
 </head>
+
 <body>
 
-<!-- Video fondo aesthetic coches -->
-<video autoplay muted loop>
-  <source src="https://cdn.pixabay.com/video/2016/07/03/3698-173505132_large.mp4" type="video/mp4">
-</video>
+<!-- Fondo -->
+<div class="bg-image"></div>
 
-<div class="w-full h-screen flex items-center justify-center">
+<!-- Contenido -->
+<div class="w-full min-h-screen flex items-center justify-center px-4 py-6">
 
-  <div class="glass p-10 text-center max-w-md w-full">
+  <div class="glass w-full max-w-sm sm:max-w-md p-6 sm:p-10 text-center">
 
     <!-- Nombre -->
-    <h1 class="text-4xl font-bold tracking-widest mb-2 neon-text">
-       Tonixker 
+    <h1 class="text-2xl sm:text-4xl font-bold tracking-widest mb-2 neon-text">
+      Tonixker
     </h1>
 
-    <!-- Bio -->
-    <p class="text-gray-300 mb-3 text-sm"></p>
-
     <!-- Ubicación -->
-    <p class="text-xs text-gray-400 mb-4 flex justify-center items-center gap-1">
+    <p class="text-[11px] sm:text-xs text-gray-400 mb-3 flex justify-center items-center gap-1">
       <i class="fas fa-location-dot"></i> New York
     </p>
 
     <!-- Avatar -->
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-center mb-4 sm:mb-6">
       <img
         src="https://i.ibb.co/r2GGdWGj/8cc9b9562abf608ccbbd36ac576cd945.jpg"
-        class="w-32 h-32 rounded-full border border-white shadow-[0_0_25px_white] object-cover"
+        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border border-white shadow-[0_0_20px_white] object-cover"
+        alt="Avatar"
       >
     </div>
 
     <!-- Usuario -->
-    <p class="font-semibold neon-text text-xl">Tonixker</p>
-    <p class="text-xs text-gray-400 mb-6">active now</p>
+    <p class="font-semibold neon-text text-lg sm:text-xl">
+      Tonixker
+    </p>
+
+    <p class="text-[11px] sm:text-xs text-gray-400 mb-4 sm:mb-6">
+      active now
+    </p>
 
     <!-- Redes -->
-    <div class="flex justify-center gap-10 text-3xl mt-5">
+    <div class="flex justify-center gap-8 sm:gap-10 text-2xl sm:text-3xl mt-3">
+
       <a href="https://discord.gg/Ce2tjuJbHw" target="_blank" class="icon">
         <i class="fab fa-discord"></i>
       </a>
+
       <a href="https://t.me/tonixasd" target="_blank" class="icon">
         <i class="fab fa-telegram"></i>
       </a>
+
       <a href="https://www.youtube.com/@SoyWerx" target="_blank" class="icon">
         <i class="fab fa-youtube"></i>
       </a>
+
     </div>
-    
+
+    <!-- Footer -->
+    <p class="text-[9px] sm:text-[10px] text-gray-500 mt-5">
+      © Tonixker
+    </p>
+
   </div>
+
 </div>
 
 </body>
