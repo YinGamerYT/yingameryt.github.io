@@ -117,30 +117,9 @@
         <i class="fab fa-youtube"></i>
       </a>
     </div>
-
-    <!-- Views -->
-    <p class="text-xs text-gray-500 mt-8">
-      👁 Visitas: <span id="visits">0</span>
-    </p>
-
+    
   </div>
 </div>
-
-<!-- Contador de visitas usando Countify -->
-<script>
-  // URL del contador
-  const countUrl = 'https://api.countify.xyz/increment/tonixker';
-
-  fetch(countUrl)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('visits').innerText = data.value;
-    })
-    .catch(err => {
-      console.error('Error al obtener visitas:', err);
-      document.getElementById('visits').innerText = '---';
-    });
-</script>
 
 </body>
 </html>
