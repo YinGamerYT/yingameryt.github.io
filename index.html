@@ -29,7 +29,7 @@ body{
   position:fixed;
   inset:0;
   background:url("https://i.ibb.co/qMK8qnzX/midnight-moon-macbook-pro-aesthetic-gkp1cta6py3ggmf0.jpg") center/cover no-repeat;
-  filter:brightness(.6) grayscale(1) blur(6px);
+  filter:brightness(.55) grayscale(1) blur(6px);
   z-index:-3;
 }
 
@@ -40,13 +40,19 @@ body{
   z-index:-2;
 }
 
-/* Glass */
+/* Card */
 .glass{
-  background:rgba(0,0,0,.4);
+  background:rgba(0,0,0,.45);
   backdrop-filter:blur(18px);
   border-radius:24px;
-  border:1px solid #fff4;
-  box-shadow:0 0 20px #fff2;
+
+  /* Borde blanco con glow suave */
+  border:1px solid rgba(255,255,255,.35);
+
+  box-shadow:
+    0 0 6px rgba(255,255,255,.25),
+    0 0 14px rgba(255,255,255,.15);
+
   animation:float 6s ease-in-out infinite;
 }
 
@@ -54,23 +60,73 @@ body{
   50%{transform:translateY(-6px)}
 }
 
-.icon{
+/* Nombre */
+h1{
   color:white;
+
+  text-shadow:
+    0 0 4px rgba(255,255,255,.7),
+    0 0 10px rgba(255,255,255,.3);
+}
+
+/* Texto typing */
+#typing{
+  min-height:16px;
+  display:block;
+  color:#ddd;
+}
+
+/* Avatar */
+.avatar{
+  box-shadow:
+    0 0 6px rgba(255,255,255,.5),
+    0 0 14px rgba(255,255,255,.25);
+}
+
+/* Íconos */
+.icon{
+  color:#eee;
   transition:.3s;
 }
 
 .icon:hover{
   transform:scale(1.2);
-  filter:drop-shadow(0 0 15px white);
+
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,.8))
+    drop-shadow(0 0 12px rgba(255,255,255,.4));
+
+  color:white;
+}
+/* Neon suave en nombre */
+.neon-name{
+  color:white;
+  text-shadow:
+    0 0 4px rgba(255,255,255,.8),
+    0 0 10px rgba(255,255,255,.4);
 }
 
-/* Texto fijo (para que no salte) */
-#typing{
-  min-height:16px;
-  display:block;
+/* Neon permanente en iconos */
+.icon{
+  color:white;
+
+  filter:
+    drop-shadow(0 0 4px rgba(255,255,255,.6))
+    drop-shadow(0 0 8px rgba(255,255,255,.3));
+
+  transition:.3s;
+}
+
+.icon:hover{
+  transform:scale(1.2);
+
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,.9))
+    drop-shadow(0 0 16px rgba(255,255,255,.6));
 }
 
 </style>
+
 </head>
 
 <body>
@@ -86,14 +142,14 @@ body{
 
 <div class="glass max-w-md w-full p-6 sm:p-10 text-center">
 
-<h1 class="text-3xl font-bold mb-2">Tonixker</h1>
+<h1 class="text-3xl font-bold mb-2 tracking-widest">Tonixker</h1>
 
-<p id="typing" class="text-xs text-gray-400 mb-3"></p>
+<p id="typing" class="text-xs mb-3"></p>
 
 <img src="https://i.ibb.co/r2GGdWGj/8cc9b9562abf608ccbbd36ac576cd945.jpg"
-class="w-28 h-28 mx-auto rounded-full border border-white mb-4">
+class="avatar w-28 h-28 mx-auto rounded-full border border-white mb-4 object-cover">
 
-<p class="font-semibold mb-1">Tonixker</p>
+<p class="font-semibold mb-1 neon-name">Tonixker</p>
 <p class="text-xs text-gray-400 mb-4">active now</p>
 
 <div class="flex justify-center gap-8 text-2xl">
@@ -113,10 +169,7 @@ class="w-28 h-28 mx-auto rounded-full border border-white mb-4">
 <script>
 
 const texts=[
-  "Cracker",
-  "Designer",
-  "Gamer",
-  "Creator"
+  ""
 ];
 
 let i=0,j=0,del=false;
@@ -159,12 +212,12 @@ addEventListener("resize",resize);
 
 const dots=[];
 
-for(let i=0;i<80;i++){
+for(let i=0;i<90;i++){
   dots.push({
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
     r:Math.random()*2+1,
-    v:Math.random()+.3
+    v:Math.random()+.4
   });
 }
 
@@ -176,7 +229,7 @@ function draw(){
     d.y-=d.v;
     if(d.y<0)d.y=canvas.height;
 
-    ctx.fillStyle="rgba(255,255,255,.5)";
+    ctx.fillStyle="rgba(255,255,255,.4)";
     ctx.beginPath();
     ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
     ctx.fill();
